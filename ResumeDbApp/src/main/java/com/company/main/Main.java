@@ -1,14 +1,12 @@
 package com.company.main;
 
-import com.company.bean.User;
-import com.company.dao.inter.UserDaoInter;
+import com.company.dao.inter.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        UserDaoInter userDao = Context.instanceUserDao(); // tightly/loosely coupling
-        User user = new User(0, "Sarkhan", "Rasullu", "sarkhanrasullu@gmail.com", "+994702333322");
-        userDao.addUser(user);
+        EmploymentHistoryDaoInter userDao = Context.instanceEmploymentHistoryDao();
+        System.out.println(userDao.getAllEmploymentHistoryByUserId(1));
     }
 }

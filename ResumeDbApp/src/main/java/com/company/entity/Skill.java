@@ -1,4 +1,4 @@
-package com.company.bean;
+package com.company.entity;
 
 import lombok.*;
 
@@ -7,11 +7,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class User {
+public class Skill {
 
     private int id;
     private String name;
-    private String surname;
-    private String email;
-    private String phone;
 }
