@@ -8,8 +8,7 @@ public class Main {
     public static void main(String[] args) {
 
         UserDaoInter userDao = Context.instanceUserDao(); // tightly/loosely coupling
-        User user = userDao.getById(3);
-        user.setName("Marry");
-        userDao.updateUser(user);
+        User user = new User(0, "Sarkhan", "Rasullu", "sarkhanrasullu@gmail.com", "+994702333322");
+        userDao.addUser(user);
     }
 }
