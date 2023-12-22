@@ -12,4 +12,6 @@ public interface UserDaoInter {
     public boolean updateUser(User u);
 
     public boolean removeUser(int id);
+    
+    public boolean addUser(User u);
 }
