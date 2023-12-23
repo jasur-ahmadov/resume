@@ -34,12 +34,28 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
     @Override
     public boolean updateUser(User u) {
         try ( Connection c = getConnection()) {
-            PreparedStatement ps = c.prepareStatement("update user set name = ?, surname = ?, email = ?, phone = ? where id = ?");
+            PreparedStatement ps = c.prepareStatement("UPDATE USER "
+                    + "	SET NAME = ?, "
+                    + "	surname = ?, "
+                    + "	email = ?, "
+                    + "	phone = ?, "
+                    + "	profile_description = ?, "
+                    + "	address = ?, "
+                    + "	birthdate = ?, "
+                    + "	birthplace_id = ?, "
+                    + "	nationality_id = ? WHERE id = ?");
             ps.setString(1, u.getName());
             ps.setString(2, u.getSurname());
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getPhone());
-            ps.setInt(5, u.getId());
+            ps.setString(5, u.getProfileDesc());
+            ps.setString(6, u.getAddress());
+            if (u.getBirthDate() != null) {
+                ps.setDate(7, u.getBirthDate());
+            }
+            ps.setInt(8, u.getBirthPlace().getId());
+            ps.setInt(9, u.getNationality().getId());
+            ps.setInt(10, u.getId());
             return ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -70,7 +86,7 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
                     + "FROM "
                     + "	USER u "
                     + "	LEFT JOIN country n ON u.nationality_id = n.id "
-                    + "	LEFT JOIN country c ON u.birthplace_id = c.id where id = " + userId);
+                    + "	LEFT JOIN country c ON u.birthplace_id = c.id where u.id = " + userId);
             stmt.execute();
             ResultSet rs = stmt.getResultSet();
             while (rs.next()) {
@@ -85,11 +101,18 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
     @Override
     public boolean addUser(User u) {
         try ( Connection c = getConnection()) {
-            PreparedStatement ps = c.prepareStatement("insert into user(name, surname, email, phone) values(?,?,?,?)");
+            PreparedStatement ps = c.prepareStatement("insert into user(name, surname, "
+                    + " email, phone, profile_description, address, "
+                    + " birthdate, birthplace_id, nationality_id ) values(?,?,?,?,?,?,?,?,?)");
             ps.setString(1, u.getName());
             ps.setString(2, u.getSurname());
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getPhone());
+            ps.setString(5, u.getProfileDesc());
+            ps.setString(6, u.getAddress());
+            ps.setDate(7, u.getBirthDate());
+            ps.setInt(8, u.getBirthPlace().getId());
+            ps.setInt(9, u.getNationality().getId());
             return ps.execute();
         } catch (Exception ex) {
             ex.printStackTrace();
