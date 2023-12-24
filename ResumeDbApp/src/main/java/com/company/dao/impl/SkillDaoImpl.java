@@ -25,4 +25,17 @@ public class SkillDaoImpl extends AbstractDAO implements SkillDaoInter {
         }
         return skills;
     }
+
+    @Override
+    public boolean insertSkill(Skill skill) {
+
+        try ( Connection c = getConnection()) {
+            PreparedStatement ps = c.prepareStatement("insert into skill(name) values (?)");
+            ps.setString(1, skill.getName());
+            return ps.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
+    }
 }
