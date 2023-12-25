@@ -24,4 +24,8 @@ public class Context {
     public static EmploymentHistoryDaoInter instanceEmploymentHistoryDao() {
         return new EmploymentHistoryDaoImpl();
     }
+
+    public static UserEmpHistoryDaoInter instanceUserEmploymentHistoryDao() {
+        return new UserEmpHistoryDaoImpl();
+    }
 }

@@ -48,7 +48,23 @@ public class EmploymentHistoryDaoImpl extends AbstractDAO implements EmploymentH
 
     @Override
     public boolean updateEmpHistory(EmploymentHistory u) {
-        return false;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "UPDATE employment_history SET header =?, begin_date = ?, "
+                    + " end_date = ?, job_description =?, user_id =? "
+                    + "WHERE id = ? ");
+            stmt.setString(1, u.getHeader());
+            stmt.setDate(2, u.getBeginDate());
+            stmt.setDate(3, u.getEndDate());
+            stmt.setString(4, u.getJobDescription());
+            stmt.setInt(5, u.getUser().getId());
+            stmt.setInt(6, u.getId());
+            return stmt.execute();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return false;
+        }
     }
 
     @Override

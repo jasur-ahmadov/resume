@@ -16,7 +16,7 @@ public class Main extends javax.swing.JFrame {
         panelProfile.fillUserComponents();
         panelDetails.fillUserComponents();
         panelSkills.fillUserComponents();
-        panelHistory.fillUserComponents();
+        panelHistory.fillUserComponent();
     }
 
     public void fillUserComponents() {

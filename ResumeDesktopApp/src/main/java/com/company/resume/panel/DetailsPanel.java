@@ -4,14 +4,12 @@ import com.company.dao.inter.CountryDaoInter;
 import com.company.entity.*;
 import com.company.main.Context;
 import java.sql.Date;
-import java.text.*;
 import java.util.List;
 import com.company.resume.config.Config;
 
 public class DetailsPanel extends javax.swing.JPanel {
 
     private final CountryDaoInter countryDao = Context.instanceCountryDao();
-    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public DetailsPanel() {
         initComponents();
@@ -23,7 +21,7 @@ public class DetailsPanel extends javax.swing.JPanel {
         txtPhone.setText(loggedInUser.getPhone());
         txtAddress.setText(loggedInUser.getAddress());
         Date dt = loggedInUser.getBirthDate();
-        String dtStr = sdf.format(dt);
+        String dtStr = Config.sdf.format(dt);
         txtBirthdate.setText(dtStr);
         txtEmail.setText(loggedInUser.getEmail());
         cbCountry.setSelectedItem(loggedInUser.getBirthPlace());
@@ -35,13 +33,13 @@ public class DetailsPanel extends javax.swing.JPanel {
             String birthDate = txtBirthdate.getText();
             String email = txtEmail.getText();
             String phone = txtPhone.getText();
-            java.sql.Date bd = new java.sql.Date(sdf.parse(birthDate).getTime());
+            java.sql.Date bd = new java.sql.Date(Config.sdf.parse(birthDate).getTime());
             user.setBirthDate(bd);
             user.setEmail(email);
             user.setPhone(phone);
             user.setBirthPlace((Country) cbCountry.getSelectedItem());
             user.setNationality((Country) cbNationality.getSelectedItem());
-        } catch (ParseException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
