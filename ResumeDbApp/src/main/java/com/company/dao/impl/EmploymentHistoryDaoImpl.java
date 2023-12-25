@@ -35,4 +35,24 @@ public class EmploymentHistoryDaoImpl extends AbstractDAO implements EmploymentH
         User user = new User(userId);
         return new EmploymentHistory(null, header, beginDate, endDate, jobDescription, user);
     }
+
+    @Override
+    public List<EmploymentHistory> getAll() {
+        return null;
+    }
+
+    @Override
+    public boolean insertEmpHistory(EmploymentHistory u) {
+        return false;
+    }
+
+    @Override
+    public boolean updateEmpHistory(EmploymentHistory u) {
+        return false;
+    }
+
+    @Override
+    public boolean removeEmpHistory(int id) {
+        return false;
+    }
 }

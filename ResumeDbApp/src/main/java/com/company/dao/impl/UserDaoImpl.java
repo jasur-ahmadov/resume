@@ -137,4 +137,28 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         Country birthPlace = new Country(birthPlaceId, birthPlaceStr, null);
         return new User(id, name, surname, email, phone, description, address, birthDate, birthPlace, nationality);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        User log = null;
+        try {
+            Connection connection = getConnection();
+            PreparedStatement stmt = connection.prepareStatement(
+                    "SELECT *,n.name as nationality_name,c.name as country_name FROM user u"
+                    + "  LEFT JOIN country c "
+                    + "  ON u.birthplace_id = c.id "
+                    + "  LEFT JOIN country n "
+                    + "  ON u.nationality_id = n.id "
+                    + "  WHERE u.email = ?");
+            stmt.setString(1, email);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                log = getUser(rs);
+            }
+        } catch (Exception ex) {
+            System.err.println("ops, we have a problem");
+        }
+        return log;
+    }
 }

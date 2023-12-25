@@ -15,4 +15,5 @@ public interface UserDaoInter {
 
     public boolean addUser(User u);
 
+    public User findByEmail(String email);
 }
