@@ -32,6 +32,78 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
     }
 
     @Override
+    public User findByEmailAndPassword(String email, String password){
+        User user = null;
+        try(Connection c = getConnection()){
+            PreparedStatement stmt = c.prepareStatement("select * from user where email= ? and password= ? ");
+            stmt.setString(1, email);
+            stmt.setString(2, password);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()){
+                user = getUser(rs);
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
+    public List<User> getAll(String name, String surname, Integer nationalityId) {
+        List<User> users = new ArrayList<>();
+        try ( Connection c = getConnection()) {
+
+            String sql = "SELECT "
+                    + "	u.*, "
+                    + "	n.nationality_name AS nationality, "
+                    + "	c.NAME AS birthplace "
+                    + "FROM "
+                    + "	USER u "
+                    + "	LEFT JOIN country n ON u.nationality_id = n.id "
+                    + "	LEFT JOIN country c ON u.birthplace_id = c.id where 1=1 ";
+
+            if(name!=null && !name.trim().isEmpty()){
+                sql+=" and u.name = ? ";
+            }
+
+            if(surname!=null && !surname.trim().isEmpty()){
+                sql+=" and u.surname = ? ";
+            }
+
+            if(nationalityId!=null){
+                sql+=" and u.nationality_id = ? ";
+            }
+
+            PreparedStatement stmt = c.prepareStatement(sql);
+
+            int i=1;
+            if(name!=null && !name.trim().isEmpty()){
+                stmt.setString(i, name);
+                i++;
+            }
+
+            if(surname!=null && !surname.trim().isEmpty()){
+                stmt.setString(i, surname);
+                i++;
+            }
+
+            if(nationalityId!=null){
+                stmt.setInt(i, nationalityId);
+            }
+
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            while (rs.next()) {
+                users.add(getUser(rs));
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return users;
+    }
+
+    @Override
     public boolean updateUser(User u) {
         try ( Connection c = getConnection()) {
             PreparedStatement ps = c.prepareStatement("UPDATE USER "
@@ -44,15 +116,14 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
                     + "	birthdate = ?, "
                     + "	birthplace_id = ?, "
                     + "	nationality_id = ? WHERE id = ?");
+
             ps.setString(1, u.getName());
             ps.setString(2, u.getSurname());
             ps.setString(3, u.getEmail());
             ps.setString(4, u.getPhone());
             ps.setString(5, u.getProfileDesc());
             ps.setString(6, u.getAddress());
-            if (u.getBirthDate() != null) {
-                ps.setDate(7, u.getBirthDate());
-            }
+            ps.setDate(7, u.getBirthDate());
             ps.setInt(8, u.getBirthPlace().getId());
             ps.setInt(9, u.getNationality().getId());
             ps.setInt(10, u.getId());

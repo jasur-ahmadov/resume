@@ -14,7 +14,7 @@ public class Country {
 
     @Override
     public String toString() {
-        return name + "(" + nationalityName + ')';
+        return name + "(" + nationalityName + ")";
     }
 
     @Override
