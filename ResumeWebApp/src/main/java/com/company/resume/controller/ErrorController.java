@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "ErrorController", urlPatterns = {"/error"})
 public class ErrorController extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher("error.jsp").forward(req, res);

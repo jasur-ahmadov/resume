@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(filterName = "JSPFileFilter", urlPatterns = {"*.jsp"})
 public class JspFilter implements Filter {
-
     @Override
     public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
             throws IOException, ServletException {
