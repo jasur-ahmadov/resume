@@ -34,13 +34,9 @@
         nationalityId = Integer.parseInt(nationalityIdStr);
     }
     List<User> users = userDao.getAll(name, surname, nationalityId);
-
-    User loggedInUser = (User) session.getAttribute("loggedInUser");
 %>
 
-<h5>
-    <%="Welcome, " + loggedInUser.getName()%>
-</h5>
+<jsp:include page="header.jsp" />
 
 <div class="container" style="width: 60%">
     <div class="row">
