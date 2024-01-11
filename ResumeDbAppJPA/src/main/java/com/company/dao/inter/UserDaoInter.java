@@ -1,6 +1,7 @@
 package com.company.dao.inter;
 
 import com.company.entity.User;
+
 import java.util.List;
 
 public interface UserDaoInter {
@@ -19,5 +20,7 @@ public interface UserDaoInter {
 
     public boolean addUser(User u);
 
-    public User findByEmail(String email);
+    public User
+
+    findByEmail(String email);
 }

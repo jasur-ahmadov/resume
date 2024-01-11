@@ -3,6 +3,7 @@ package com.company.entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -21,16 +24,9 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user")
-//@NamedQueries({
-//    @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
-//    @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id = :id"),
-//    @NamedQuery(name = "User.findByName", query = "SELECT u FROM User u WHERE u.name = :name"),
-//    @NamedQuery(name = "User.findBySurname", query = "SELECT u FROM User u WHERE u.surname = :surname"),
-//    @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email"),
-//    @NamedQuery(name = "User.findByPhone", query = "SELECT u FROM User u WHERE u.phone = :phone"),
-//    @NamedQuery(name = "User.findByAddress", query = "SELECT u FROM User u WHERE u.address = :address"),
-//    @NamedQuery(name = "User.findByBirthdate", query = "SELECT u FROM User u WHERE u.birthdate = :birthdate"),
-//    @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password")})
+@NamedQueries({
+        @NamedQuery(name = "User.findByEmail", query = "SELECT u FROM User u WHERE u.email = :email")
+})
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -89,7 +85,8 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(int id, String name, String surname, String email, String phone, String profileDesc, String address, java.sql.Date birthDate, Country birthPlace, Country nationality) {
+    public User(int id, String name, String surname, String email, String phone, String profileDesc, String address,
+            java.sql.Date birthDate, Country birthPlace, Country nationality) {
         this.id = id;
         this.name = name;
         this.surname = surname;

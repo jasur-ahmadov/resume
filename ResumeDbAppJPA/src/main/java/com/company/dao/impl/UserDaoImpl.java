@@ -7,7 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import com.company.dao.inter.AbstractDAO;
 import com.company.dao.inter.UserDaoInter;
@@ -63,10 +68,11 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         if (nationalityId != null) {
             q.setParameter("nId", nationalityId);
         }
+        em.close();
         return q.getResultList();
     }
 
-    @Override
+    @Override // JPQL
     public User findByEmailAndPassword(String email, String password) {
         EntityManager em = emInstance();
         Query q = em.createQuery("select u from User u where u.email = :e and u.password = :p", User.class);
@@ -76,18 +82,48 @@ public class UserDaoImpl extends AbstractDAO implements UserDaoInter {
         if (list.size() == 1) {
             return list.get(0);
         }
+        em.close();
         return null;
     }
 
-    @Override
+//    @Override // CriteriaBuilder
+//    public User findByEmail(String email) {
+//        EntityManager em = emInstance();
+//        CriteriaBuilder cb = em.getCriteriaBuilder();
+//        CriteriaQuery<User> cq = cb.createQuery(User.class);
+//        Root<User> postRoot = cq.from(User.class);
+//        cq.select(postRoot).where(cb.equal(postRoot.get("email"), email));
+//        List<User> list = em.createQuery(cq).getResultList();
+//        if (list.size() == 1) {
+//            return list.get(0);
+//        }
+//        em.close();
+//        return null;
+//    }
+
+//    @Override // NamedQuery
+//    public User findByEmail(String email) {
+//        EntityManager em = emInstance();
+//        Query query = em.createNamedQuery("User.findByEmail", User.class);
+//        query.setParameter("email", email);
+//        List<User> list = query.getResultList();
+//        if (list.size() == 1) {
+//            return list.get(0);
+//        }
+//        em.close();
+//        return null;
+//    }
+
+    @Override // Native SQL
     public User findByEmail(String email) {
         EntityManager em = emInstance();
-        Query q = em.createQuery("select u from User u where u.email = :e", User.class);
-        q.setParameter("e", email);
-        List<User> list = q.getResultList();
+        Query query = em.createNativeQuery("select * from user where email = ?", User.class);
+        query.setParameter(1, email);
+        List<User> list = query.getResultList();
         if (list.size() == 1) {
             return list.get(0);
         }
+        em.close();
         return null;
     }
 
