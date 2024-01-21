@@ -9,5 +9,4 @@ public class ResumeWebAppSpringApplication {
     public static void main(String[] args) {
         SpringApplication.run(ResumeWebAppSpringApplication.class, args);
     }
-
 }
