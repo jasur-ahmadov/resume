@@ -12,7 +12,7 @@
     <artifactId>ResumeDbAppJPASpring</artifactId>
     <version>1.0.0</version>
     <name>ResumeDbAppJPASpring</name>
-    <description>ResumeDbAppJPASpring</description>
+    <description>Resume DB App written in Spring Boot</description>
     <properties>
         <java.version>17</java.version>
     </properties>
@@ -24,7 +24,6 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -36,12 +35,18 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${project.parent.version}</version>
                 <configuration>
                     <excludes>
                         <exclude>
