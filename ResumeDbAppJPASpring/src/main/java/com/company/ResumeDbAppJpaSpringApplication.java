@@ -1,26 +1,19 @@
 package com.company;
 
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
-
-import javax.swing.text.html.Option;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Order;
 
-import com.company.dao.inter.UserDaoInter;
-import com.company.dao.inter.UserRepository;
+import com.company.dao.impl.UserRepository;
 import com.company.entity.User;
-import com.company.service.inter.UserServiceInter;
 
 @SpringBootApplication
+@EnableCaching
 public class ResumeDbAppJpaSpringApplication {
 
     public static void main(String[] args) {
@@ -46,10 +39,9 @@ public class ResumeDbAppJpaSpringApplication {
     @Bean
     public CommandLineRunner run() {
         return args -> {
-            List<User> users = userRepository.findAll();
-            System.out.println(users);
-            users = userRepository.findAll(Sort.by(Order.desc("id")));
-            System.out.println(users);
+            for (int i=0; i<10; i++){
+                userRepository.getAll(null, null, null);
+            }
         };
     }
 }

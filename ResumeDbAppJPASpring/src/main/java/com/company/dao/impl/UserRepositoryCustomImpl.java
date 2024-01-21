@@ -2,11 +2,10 @@ package com.company.dao.impl;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.company.dao.inter.UserDaoInter;
 import com.company.entity.User;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -16,12 +15,13 @@ import jakarta.persistence.Query;
 
 @Repository(value = "repo1")
 @Scope(value = "prototype") // default singleton
-public class UserDaoImpl implements UserDaoInter {
+public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
     @PersistenceContext
     EntityManager em;
 
     @Override
+    @Cacheable("users")
     public List<User> getAll(String name, String surname, Integer nationalityId) {
         String jpql = "select u from User u where 1=1 ";
         if (name != null && !name.trim().isEmpty()) {

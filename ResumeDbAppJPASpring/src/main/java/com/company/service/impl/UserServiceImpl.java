@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.company.dao.inter.UserDaoInter;
+import com.company.dao.impl.UserRepositoryCustom;
 import com.company.entity.User;
 import com.company.service.inter.UserServiceInter;
 
@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserServiceInter {
 
     @Autowired
     @Qualifier(value = "repo1")
-    private UserDaoInter userDao;
+    private UserRepositoryCustom userDao;
 
     @Override
     public List<User> getAll(String name, String surname, Integer nationalityId) {

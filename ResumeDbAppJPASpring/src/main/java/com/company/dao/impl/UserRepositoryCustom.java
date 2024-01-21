@@ -1,12 +1,10 @@
-package com.company.dao.inter;
+package com.company.dao.impl;
 
 import java.util.List;
 
 import com.company.entity.User;
 
-public interface UserDaoInter {
-
-//    List<User> getAll();
+public interface UserRepositoryCustom {
 
     User findByEmailAndPassword(String email, String password);
 
