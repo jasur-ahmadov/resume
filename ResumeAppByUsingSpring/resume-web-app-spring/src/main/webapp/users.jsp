@@ -1,7 +1,7 @@
 <%@page import="com.company.entity.User" %>
-<%@page import="com.company.main.Context" %>
-<%@page import="com.company.dao.inter.UserDaoInter" %>
-<%@ page import="java.util.List" %>
+<%--<%@page import="com.company.main.Context" %>--%>
+<%--<%@page import="com.company.dao.impl.UserRepositoryCustom" %>--%>
+<%@page import="java.util.List" %>
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>

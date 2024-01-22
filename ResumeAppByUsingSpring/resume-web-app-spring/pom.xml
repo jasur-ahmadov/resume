@@ -6,7 +6,7 @@
         <groupId>resume.multimodule</groupId>
         <artifactId>resume.multimodule</artifactId>
         <version>1.0.0</version>
-        <relativePath/>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.company</groupId>
     <artifactId>resume-web-app-spring</artifactId>
@@ -44,6 +44,11 @@
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <version>10.1.18</version>
+        </dependency>
+        <dependency>
+            <groupId>com.company</groupId>
+            <artifactId>ResumeDbAppJPASpring</artifactId>
+            <version>1.0.0</version>
         </dependency>
     </dependencies>
     <build>
