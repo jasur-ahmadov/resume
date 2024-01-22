@@ -39,8 +39,8 @@
             <scope>test</scope>
         </dependency>
 
-        <!--added by me-->
-        <dependency>
+        <!--additional-->
+        <dependency>  <!--jsp fayllarini tanimasi ucun-->
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <version>10.1.18</version>
