@@ -9,9 +9,9 @@
 
     <form action="login" method="POST">
         <div class="col-4 container login_fix_">
-            <center>
+            <div style="text-align: center;">
                 <h1>Login:</h1>
-            </center>
+            </div>
             <div class="form-group">
                 <label>Email address</label>
                 <input type="text" class="fadeIn second" name="username" placeholder="Username"/>
