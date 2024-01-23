@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.company.entity.User;
+import com.company.form.UserForm;
 import com.company.service.inter.UserServiceInter;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,7 +44,25 @@ public class UserController {
             @RequestParam(value = "nid", required = false) Integer nid) {
         List<User> list = userService.getAll(name, surname, nid);
         ModelAndView mv = new ModelAndView("users");
-        mv.addObject("list", list);
+        mv.addObject("users", list);
         return mv;
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/usersm")
+    public ModelAndView indexM(@RequestBody(required = false) UserForm u) {
+        List<User> list = null;
+        if (u != null) {
+            list = userService.getAll(u.getName(), u.getSurname(), u.getNationalityId());
+        } else {
+            list = userService.getAll(null, null, null);
+        }
+        ModelAndView mv = new ModelAndView("users");
+        mv.addObject("users", list);
+        return mv;
+    }
+
+    @ModelAttribute("user")
+    public UserForm getEmptyUserForm() {
+        return new UserForm("Jasur", "Ahmadov", null);
     }
 }

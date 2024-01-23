@@ -25,17 +25,13 @@
     <title>JSP Page</title>
 </head>
 <body>
-
 <style>
-
   .error {
     color: red;
   }
 </style>
-
 <%@ include file="header.jsp" %>
 <%--<jsp:include page="header.jsp" />--%>
-
 <div class="container">
     hey!!!
     <div class="row">
@@ -43,8 +39,7 @@
             <f:form action="usersm" method="GET" modelAttribute="user">
                 <div class="form-group">
                     <label for="name">name:</label>
-                    <f:input onkeyup="writeWhatIamTyping()"
-                             path="name"
+                    <f:input path="name"
                              placeholder="Enter name"
                              class="form-control"/>
                     <form:errors path="name" cssClass="error"/>
@@ -57,11 +52,9 @@
                             class="form-control"/>
                     <form:errors path="surname" cssClass="error"/>
                 </div>
-
                 <f:button type="submit" class="btn btn-primary" id="btnsearch">
                     Search
                 </f:button>
-
             </f:form>
         </div>
     </div>
@@ -83,7 +76,6 @@
                     <td>${u.surname}</td>
                     <td>${u.nationality.name}</td>
                     <td style="width:5px">
-
                         <input type="hidden" name="id" value="${u.id}"/>
                         <input type="hidden" name="action" value="delete"/>
                         <button class="btn btn-danger" type="submit" value="delete"
@@ -105,10 +97,8 @@
             </c:forEach>
             </tbody>
         </table>
-
     </div>
 </div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
