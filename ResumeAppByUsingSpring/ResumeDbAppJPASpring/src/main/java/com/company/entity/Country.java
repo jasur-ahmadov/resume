@@ -2,24 +2,17 @@ package com.company.entity;
 
 import java.io.Serializable;
 import java.util.List;
-
-import jakarta.persistence.Basic;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "country")
-//@NamedQueries({
-//    @NamedQuery(name = "Country.findAll", query = "SELECT c FROM Country c"),
-//    @NamedQuery(name = "Country.findById", query = "SELECT c FROM Country c WHERE c.id = :id"),
-//    @NamedQuery(name = "Country.findByName", query = "SELECT c FROM Country c WHERE c.name = :name"),
-//    @NamedQuery(name = "Country.findByNationalityName", query = "SELECT c FROM Country c WHERE c.nationalityName = :nationalityName")})
 public class Country implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -101,7 +94,6 @@ public class Country implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Country)) {
             return false;
         }

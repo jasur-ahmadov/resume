@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.company.dao.inter.AbstractDAO;
 import com.company.dao.inter.UserSkillDaoInter;
 import com.company.entity.Skill;

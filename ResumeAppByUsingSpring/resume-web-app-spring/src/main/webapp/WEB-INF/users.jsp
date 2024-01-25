@@ -31,15 +31,14 @@
   }
 </style>
 <%@ include file="header.jsp" %>
-<%--<jsp:include page="header.jsp" />--%>
 <div class="container">
-    hey!!!
     <div class="row">
         <div class="col-4">
             <f:form action="usersm" method="GET" modelAttribute="user">
                 <div class="form-group">
                     <label for="name">name:</label>
                     <f:input path="name"
+                             id="name"
                              placeholder="Enter name"
                              class="form-control"/>
                     <form:errors path="name" cssClass="error"/>
@@ -48,6 +47,7 @@
                     <label for="surname">surname:</label>
                     <f:input
                             path="surname"
+                            id="surname"
                             placeholder="Enter surname"
                             class="form-control"/>
                     <form:errors path="surname" cssClass="error"/>

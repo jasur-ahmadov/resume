@@ -2,6 +2,10 @@ package com.company.dao.impl;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Repository;
@@ -9,12 +13,9 @@ import org.springframework.stereotype.Repository;
 import com.company.entity.User;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.Query;
 
 @Repository(value = "repo1")
-@Scope(value = "prototype") // default singleton
+@Scope(value = "prototype")
 public class UserRepositoryCustomImpl implements UserRepositoryCustom {
 
     @PersistenceContext

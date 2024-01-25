@@ -1,5 +1,5 @@
 <%@page import="com.company.entity.User" %>
-<%@ page import="java.util.List" %>
+<%@page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -27,6 +27,7 @@
 <%@ include file="header.jsp" %>
 <%--<jsp:include page="header.jsp" />--%>
 
+
 <%
     List<User> list = (List<User>) request.getAttribute("list");
 %>
@@ -46,12 +47,11 @@
                 <div class="form-group">
                     <label for="name">name:</label>
                     <input onkeyup="writeWhatIamTyping()"
-                           placeholder="Enter name" id="name" class="form-control" type="text" name="name" value=""/>
+                           placeholder="Enter name" class="form-control" type="text" name="name" value=""/>
                 </div>
                 <div class="form-group">
                     <label for="surname">surname:</label>
-                    <input placeholder="Enter surname" id="surname" class="form-control" type="text" name="surname"
-                           value=""/>
+                    <input placeholder="Enter surname" class="form-control" type="text" name="surname" value=""/>
                 </div>
 
                 <input class="btn btn-primary" type="submit" name="search" value="Search" id="btnsearch"/>

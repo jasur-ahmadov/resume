@@ -1,11 +1,16 @@
 package com.company.form;
 
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 public class UserForm {
 
-//    @NotEmpty(message = "name can not be empty")
-//    @Size(min = 3, message = "name can not be less than 3")
+    @NotEmpty(message = "name can not be empty")
+    @Size(min = 2, message = "name can not be shorter than 2")
     private String name;
-//    @NotEmpty
+
+    @NotEmpty(message = "surname can not be empty")
     private String surname;
     private Integer nationalityId;
 

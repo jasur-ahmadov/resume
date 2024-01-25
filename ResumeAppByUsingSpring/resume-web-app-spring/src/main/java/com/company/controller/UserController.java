@@ -2,10 +2,12 @@ package com.company.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,11 +17,8 @@ import com.company.entity.User;
 import com.company.form.UserForm;
 import com.company.service.inter.UserServiceInter;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 @Controller
 public class UserController {
-
     @Autowired
     private UserServiceInter userService;
 
@@ -36,7 +35,6 @@ public class UserController {
 //        request.setAttribute("list", list);
 //        return "users";
 //    }
-
     @RequestMapping(method = RequestMethod.GET, value = "/users")
     public ModelAndView index(
             @RequestParam(value = "name", required = false) String name,
@@ -49,20 +47,18 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/usersm")
-    public ModelAndView indexM(@RequestBody(required = false) UserForm u) {
-        List<User> list = null;
-        if (u != null) {
-            list = userService.getAll(u.getName(), u.getSurname(), u.getNationalityId());
-        } else {
-            list = userService.getAll(null, null, null);
-        }
+    public ModelAndView indexM(@Valid @ModelAttribute("user") UserForm u, BindingResult bindingResult) {
         ModelAndView mv = new ModelAndView("users");
+        if (bindingResult.hasErrors()) {
+            return mv;
+        }
+        List<User> list = userService.getAll(u.getName(), u.getSurname(), u.getNationalityId());
         mv.addObject("users", list);
         return mv;
     }
 
     @ModelAttribute("user")
     public UserForm getEmptyUserForm() {
-        return new UserForm("Jasur", "Ahmadov", null);
+        return new UserForm(null, null, null);
     }
 }
