@@ -33,6 +33,11 @@ public class UserServiceImpl implements UserServiceInter {
     }
 
     @Override
+    public String[] getAuthorities(Integer userId) {
+        return userDao.getAuthorities(userId);
+    }
+
+    @Override
     public boolean updateUser(User u) {
         return userDao.updateUser(u);
     }

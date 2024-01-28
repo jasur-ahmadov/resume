@@ -4,8 +4,8 @@
     <title>Why are you here?</title>
 </head>
 <body>
-    <center>
-        <%=request.getParameter("msg")%>
-    </center>
+<center>
+    <%=request.getParameter("msg")%>
+</center>
 </body>
 </html>

@@ -1,19 +1,10 @@
 package com.company;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.context.annotation.Bean;
-
-import com.company.dao.impl.UserRepository;
-import com.company.entity.User;
 
 @SpringBootApplication
-@EnableCaching
+//@EnableCaching
 public class ResumeDbAppJpaSpringApplication {
 
     public static void main(String[] args) {
@@ -33,15 +24,13 @@ public class ResumeDbAppJpaSpringApplication {
 //        };
 //    }
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Bean
-    public CommandLineRunner run() {
-        return args -> {
-            for (int i=0; i<10; i++){
-                userRepository.getAll(null, null, null);
-            }
-        };
-    }
+//    @Autowired
+//    private UserRepository userRepository;
+//
+//    @Bean
+//    public CommandLineRunner run() {
+//        return args -> {
+//            System.out.println(Arrays.asList(userRepository.getAuthorities(32)));
+//        };
+//    }
 }

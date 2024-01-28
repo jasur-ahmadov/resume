@@ -56,6 +56,17 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
+
+    @Basic(optional = false)
+    @Column(name = "enabled")
+    private Short enabled;
+
+    @Basic(optional = false)
+    @Column(name = "locked")
+    private Short locked;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    private List<UserRole> userRoleList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserSkill> userSkills;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
@@ -81,6 +92,17 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.password = password;
+    }
+
+    public User(Integer id, String name, String surname, String email, String phone, String password, Short enabled, Short locked) {
+        this.id = id;
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.phone = phone;
+        this.password = password;
+        this.enabled = enabled;
+        this.locked = locked;
     }
 
     public User(int id, String name, String surname, String email, String phone, String profileDesc, String address,
@@ -218,6 +240,30 @@ public class User implements Serializable {
             return false;
         }
         return true;
+    }
+
+    public Short getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Short enabled) {
+        this.enabled = enabled;
+    }
+
+    public Short getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Short locked) {
+        this.locked = locked;
+    }
+
+    public List<UserRole> getUserRoleList() {
+        return userRoleList;
+    }
+
+    public void setUserRoleList(List<UserRole> userRoleList) {
+        this.userRoleList = userRoleList;
     }
 
     @Override

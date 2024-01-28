@@ -1,6 +1,7 @@
 package com.company.dao.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,8 +9,10 @@ import javax.persistence.Query;
 
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 
+import com.company.entity.Role;
 import com.company.entity.User;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
@@ -22,7 +25,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
     EntityManager em;
 
     @Override
-    @Cacheable("users")
+//    @Cacheable("users")
     public List<User> getAll(String name, String surname, Integer nationalityId) {
         String jpql = "select u from User u where 1=1 ";
         if (name != null && !name.trim().isEmpty()) {
@@ -44,6 +47,7 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
         if (nationalityId != null) {
             q.setParameter("nId", nationalityId);
         }
+        System.out.println(q.getResultList());
         return q.getResultList();
     }
 
@@ -92,6 +96,18 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
             return list.get(0);
         }
         return null;
+    }
+
+    @Override
+    public String[] getAuthorities(Integer userId) {
+        Query query = em.createNativeQuery(
+                "select r.* from user_role ur inner join role r on ur.role_id=r.id where ur.user_id=?", Role.class);
+        query.setParameter(1, userId);
+        List<Role> list = query.getResultList();
+        return list.stream()
+                .map(Role::getName)
+                .collect(Collectors.toList())
+                .toArray(String[]::new);
     }
 
     @Override

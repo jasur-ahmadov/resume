@@ -19,4 +19,6 @@ public interface UserRepositoryCustom {
     boolean addUser(User u);
 
     User findByEmail(String email);
+
+    String[] getAuthorities(Integer userId);
 }

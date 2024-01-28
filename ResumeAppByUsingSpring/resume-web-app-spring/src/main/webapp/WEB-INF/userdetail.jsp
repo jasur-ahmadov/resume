@@ -15,10 +15,10 @@
         <input type="hidden" name="action" value="update"/>
         <input type="hidden" name="id" value="<%=u.getId()%>"/>
         <label for="name">name:</label>
-        <input type="text" id="name" name="name" value="<%=u.getName()%>"/>
+        <input type="text" name="name" value="<%=u.getName()%>"/>
         <br/>
         <label for="surname">surname</label>
-        <input type="text" id="surname" name="surname" value="<%=u.getSurname()%>"/>
+        <input type="text" name="surname" value="<%=u.getSurname()%>"/>
         <input type="submit" name="save" value="Save"/>
     </form>
 </div>
