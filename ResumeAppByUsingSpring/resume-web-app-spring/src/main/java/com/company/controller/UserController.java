@@ -60,12 +60,12 @@ public class UserController {
         return mv;
     }
 
-    @RequestMapping(method = {RequestMethod.GET}, value = "/login")//users?name=Sarkhan
+    @RequestMapping(method = {RequestMethod.GET}, value = "/login")
     public String loginPost() {
         return "login";
     }
 
-    @RequestMapping(method = {RequestMethod.GET}, value = "/logout")//users?name=Sarkhan
+    @RequestMapping(method = {RequestMethod.GET}, value = "/logout")
     public String logoutPage() {
         return "logout";
     }
