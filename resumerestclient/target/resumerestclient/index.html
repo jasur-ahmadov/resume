@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    var arr = [
+      {
+        "id": 1,
+        "name": "Jasur",
+        "surname": "Ahmadov"
+      },
+      {
+        "id": 32,
+        "name": "Kamil",
+        "surname": "Heyderli"
+      },
+      {
+        "id": 33,
+        "name": "Test",
+        "surname": "Test"
+      }
+    ]
+
+    function printUsers() {
+      var container = document.getElementById("container");
+      for (var i = 0; i<arr.length; i++){
+          var obj = arr[i];
+          var str = obj.id + " " + obj.name + " " + obj.surname+"<br>";
+          container.innerHTML += str;
+      }
+    }
+  </script>
+</head>
+<body onload="printUsers()">
+<div id="container"></div>
+</body>
+</html>
