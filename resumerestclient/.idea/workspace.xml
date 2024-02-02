@@ -10,19 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="197c38bb-a80b-4f02-87f0-13f524b139e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resumerestapi/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../resumerestapi/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resumerestapi/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../resumerestapi/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../resumerestapi/src/test/java/com/company/ResumerestapiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resumerestapi/src/main/java/com/company/controller/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../resumerestapi/src/main/java/com/company/controller/UserRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../resumerestapi/src/main/java/com/company/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/../resumerestapi/src/main/java/com/company/dto/UserDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/resumerestclient/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/resumerestclient/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +35,8 @@
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
+    <option name="FILTER_INFO" value="false" />
+    <option name="FILTER_DEBUG" value="false" />
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -64,13 +57,15 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Workspace/resume/resumerestclient",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Problems",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.31264368"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="Tomcat 9.0.84" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.84" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.84" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.84" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="11" nameIsGenerated="true">
       <deployment>
         <artifact name="resumerestclient:war exploded">
           <settings>
@@ -168,6 +163,7 @@
       <option name="presentableId" value="Default" />
       <updated>1706566761678</updated>
       <workItem from="1706566763194" duration="3977000" />
+      <workItem from="1706894975046" duration="4781000" />
     </task>
     <servers />
   </component>
