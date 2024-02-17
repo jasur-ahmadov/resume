@@ -7,15 +7,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Scope;
-import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.company.entity.Role;
 import com.company.entity.User;
-
-import at.favre.lib.crypto.bcrypt.BCrypt;
 
 @Repository(value = "repo1")
 @Scope(value = "prototype")
@@ -129,11 +126,11 @@ public class UserRepositoryCustomImpl implements UserRepositoryCustom {
         return u;
     }
 
-    static BCrypt.Hasher myVerifyer = BCrypt.withDefaults();
+    private static BCryptPasswordEncoder myVerifyer = new BCryptPasswordEncoder();
 
     @Override
     public boolean addUser(User u) {
-        u.setPassword(myVerifyer.hashToString(4, u.getPassword().toCharArray()));
+        u.setPassword(myVerifyer.encode(u.getPassword()));
         em.persist(u);
         return true;
     }
