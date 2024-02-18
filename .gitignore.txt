@@ -1,7 +1,7 @@
 ResumeWebApp/target
 resumerestclient/target
 resumerestapi/target
-resumerestapi/target/crazyfaults.log
+resumerestapi/target\crazyfaults.log
 ResumeDesktopApp/target
 ResumeDbAppJPA/target
 ResumeDbAppJDBC/target
