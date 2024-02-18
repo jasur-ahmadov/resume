@@ -19,7 +19,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources
-                .resourceId("resumeapi")
+                .resourceId("resumerestapi")
                 .tokenServices(tokenServices);
     }
 
@@ -28,9 +28,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http
                 .requestMatchers()
                 .and()
-                .authorizeRequests().antMatchers("/users").hasAnyAuthority("ADMIN")
+                .authorizeRequests().antMatchers("/users").hasAnyAuthority("ROLE_ADMIN")
                 .and()
-                .authorizeRequests().antMatchers("/foo").hasAnyAuthority("USER", "ADMIN")
+                .authorizeRequests().antMatchers("/users/{id}").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .antMatchers("/actuator/**", "/api-docs/**").permitAll()
                 .antMatchers("/**").authenticated();
     }

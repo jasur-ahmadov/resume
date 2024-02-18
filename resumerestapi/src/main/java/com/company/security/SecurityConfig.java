@@ -17,8 +17,6 @@ import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
-
 import javax.sql.DataSource;
 
 @Configuration
@@ -28,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${security.signing-key}")
     private String signingKey;
-
 
     @Autowired
     @Qualifier("dataSource")
@@ -49,7 +46,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
         converter.setSigningKey(signingKey);
-
         return converter;
     }
 
@@ -60,14 +56,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     @Primary
-    //Making this primary to avoid any accidental duplication with another token service instance of the same name
     public DefaultTokenServices tokenServices() {
         DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);//
         return defaultTokenServices;
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

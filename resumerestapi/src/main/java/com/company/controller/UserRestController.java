@@ -2,6 +2,7 @@ package com.company.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.company.dto.ResponseDTO;
 import com.company.dto.UserDTO;
 import com.company.entity.User;
@@ -44,14 +46,14 @@ public class UserRestController {
     }
 
     @DeleteMapping("/users/{id}")
-    public ResponseEntity<ResponseDTO> deleteUser(@PathVariable("id") int id){
+    public ResponseEntity<ResponseDTO> deleteUser(@PathVariable("id") int id) {
         User user = userService.getById(id);
         userService.removeUser(id);
         return ResponseEntity.ok(ResponseDTO.of(new UserDTO(user), "Successfully deleted!"));
     }
 
     @PostMapping("/users")
-    public ResponseEntity<ResponseDTO> addUser(@RequestBody UserDTO userDTO){
+    public ResponseEntity<ResponseDTO> addUser(@RequestBody UserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
         user.setSurname(userDTO.getSurname());
