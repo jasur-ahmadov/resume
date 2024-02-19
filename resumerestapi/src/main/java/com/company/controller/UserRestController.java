@@ -2,7 +2,6 @@ package com.company.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,11 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.company.dto.ResponseDTO;
 import com.company.dto.UserDTO;
 import com.company.entity.User;
-import com.company.exception.MyException;
 import com.company.service.inter.UserServiceInter;
 
 @RestController
@@ -32,10 +29,6 @@ public class UserRestController {
             @RequestParam(name = "surname", required = false) String surname
     ) {
         List<User> users = userService.getAll(name, surname, nId);
-
-        if (users != null) {
-            throw new MyException("This is myException! Null deyil");
-        }
         List<UserDTO> userDTOS = new ArrayList<>();
         for (User user : users) {
             userDTOS.add(new UserDTO(user));
